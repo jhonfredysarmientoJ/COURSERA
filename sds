@@ -1,0 +1,103 @@
+-require 'vendor/autoload.php';
+
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+
+// Configurar el navegador
+$host = 'http://localhost:4444/wd/hub'; // URL del servidor Selenium WebDriver
+$capabilities = DesiredCapabilities::chrome();
+$driver = RemoteWebDriver::create($host, $capabilities);
+
+// Abrir la página web
+$driver->get('https://www.example.com'); // Reemplaza con la URL de la página que deseas capturar
+
+// Tomar una captura de pantalla
+$driver->takeScreenshot('screenshot.png'); // Guardar la captura de pantalla en un archivo
+
+// Cerrar el navegador
+$driver->quit();
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+
+public class WebpageScreenshot {
+
+    public static void main(String[] args) {
+        // Configurar la ubicación del controlador de Chrome
+        System.setProperty("webdriver.chrome.driver", "ruta/al/controlador/chromedriver");
+
+        // Configurar las opciones del navegador
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless"); // Ejecutar en modo sin cabeza, sin abrir una ventana del navegador
+
+        // Inicializar el navegador
+        WebDriver driver = new ChromeDriver(options);
+
+        // Abrir la página web
+        driver.get("https://www.example.com"); // Reemplaza con la URL de la página que deseas capturar
+
+        // Tomar una captura de pantalla
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        // Guardar la captura de pantalla en un archivo
+        try {
+            FileUtils.copyFile(screenshotFile, new File("ruta/del/archivo/screenshot.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Cerrar el navegador
+        driver.quit();
+    }
+}
+
+
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+}
+
+/* Estilos para los encabezados */
+h1 {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+}
+
+h2 {
+    color: #666;
+    font-size: 18px;
+}
+
+/* Estilos para los enlaces */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para una clase específica */
+.mi-clase {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi página</title>
+    <link rel="stylesheet" href="ruta/al/archivo.css">
+</head>
+<body>
+    <!-- Contenido de la página -->
+</body>
+</html>  
